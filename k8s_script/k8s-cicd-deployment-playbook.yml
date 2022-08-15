@@ -1,0 +1,8 @@
+- name: Create pods using deployment 
+  hosts: kubernetes 
+  # become: true
+  # user: ubuntu
+ 
+  tasks: 
+  - name: create a deployment
+    command: kubectl apply -f cicd-devops-deployment.yml

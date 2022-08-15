@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    tools { 
+      maven 'Maven3.8.5'
+    }
+    stages {
+        stage('github clone') {
+            steps {
+                git branch: 'main', url: 'https://github.com/joneconsulting/cicd-web-project.git'; 
+            }
+        }
+        
+        stage('build') {
+            steps {
+                sh '''
+                    echo build start
+                    mvn clean compile package -DskipTests=true
+                '''
+            }
+        }
+    }
+}

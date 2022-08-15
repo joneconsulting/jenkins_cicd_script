@@ -1,0 +1,25 @@
+- hosts: all
+#   become: true  
+
+  tasks:
+  - name: stop current running container
+    command: docker stop my_cicd_project
+    ignore_errors: yes
+
+  - name: remove stopped cotainer
+    command: docker rm my_cicd_project
+    ignore_errors: yes
+
+  - name: remove current docker image
+    command: docker rmi cicd-project-ansible
+    ignore_errors: yes
+
+  - name: build a docker image with deployed war file
+    command: docker build -t cicd-project-ansible .
+    args: 
+        chdir: /root
+
+  - name: create a container using cicd-project-ansible image
+    command: docker run -d --name my_cicd_project -p 8080:8080 cicd-project-ansible
+
+

@@ -1,0 +1,9 @@
+- name: Ansible Copy Example Local to Remtoe 
+  hosts: devops
+  tasks:
+    - name: copying file with playbook
+      copy:
+        src: ~/sample.txt
+        dest: /tmp
+        owner: root
+        modE: 0644

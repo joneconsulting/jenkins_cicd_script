@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    stages {
+        stage('Git clone') {
+            steps {
+                git 'https://github.com/joneconsulting/jenkins_pipeline_script';
+            }
+        }
+
+        stage('Compile') {
+            steps {
+                echo "Compiled successfully!";
+                sh './build.sh'
+            }
+        }
+
+        stage('JUnit') {
+            steps {
+                echo "JUnit passed successfully!";
+                sh './unit.sh'
+            }
+        }
+
+        stage('Code Analysis') {
+            steps {
+                echo "Code Analysis completed successfully!";
+                sh './quality.sh'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo "Deployed successfully!";
+                sh './deploy.sh'
+            }
+        }
+    }
+}
