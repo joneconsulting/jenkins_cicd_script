@@ -4,5 +4,8 @@
   # user: ubuntu
  
   tasks: 
+  - name: delete the previous deployment
+    command: kubectl delete deployment.apps/cicd-deployment
+
   - name: create a deployment
     command: kubectl apply -f cicd-devops-deployment.yml
