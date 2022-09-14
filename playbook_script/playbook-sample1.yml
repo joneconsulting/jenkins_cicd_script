@@ -6,4 +6,4 @@
         src: ~/sample.txt
         dest: /tmp
         owner: root
-        modE: 0644
+        mode: 0644
